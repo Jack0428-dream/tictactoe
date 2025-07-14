@@ -44,3 +44,50 @@ function Gameboard() {
     
     return { gameboard, players, getBoard, chooseCell };
 }
+
+function playerTurn () {
+    // winning logic
+    // start and return
+    // switch turn
+
+    const board = Gameboard();
+
+    let turn = 0;
+    let gameover = 0;
+    const switchTurn = () => {
+            if( turn === 0 ) {
+                number = prompt("Which cell do you wanna choose?");
+                board.chooseCell(number, board.players.player1);
+                console.log(board.getBoard());
+                turn = 1;
+            } else if ( turn === 1 )  {
+                number = prompt("Which cell do you wanna choose?");
+                board.chooseCell(number,board.players.player2);
+                console.log(board.getBoard());
+                turn = 0;
+            }
+    }
+
+//     const playerWin = () {
+//         let rerow = 0;
+//         let recol = 0;
+
+//         if ( index == 1 || index == 2 || index == 3 ) {
+//             rerow = 0;
+//             recol = index - 1;
+//         } else if ( index == 4 || index == 5 || index == 6) {
+//             rerow = 1;
+//             recol = index - 4;
+//         } else if ( index == 7 || index == 8 || index == 9) {
+//             rerow = 2;
+//             recol = index - 7;
+//         } else {
+//             alert("You choose the wrong indext. Choose between 1 ~ 9");
+//             playerWin();
+//         }
+
+//         if ()
+
+//     }
+//    return { board, switchTurn };
+}
