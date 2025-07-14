@@ -1,5 +1,11 @@
 Getting a working game in the console.
 1. Each player choose 1 cell from 2d array gameboard
+    Player1 : X, Player2: O
+    Need a gameboard 
+    Need a function to choose one cell from 9 of them
+    one chooses the cell the other cannot choose the very cell the opponent 
+    already chose. 
+    
 2. Player's turn changes each time when they choose the cell
 3. When X or O takes all three spaces of a row, column, or diagonal 
 of the grid, that player wins the game and gmae is over. 
