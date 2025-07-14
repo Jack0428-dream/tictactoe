@@ -42,5 +42,5 @@ function Gameboard() {
         return true;
     }
     
-
+    return { gameboard, players, getBoard, chooseCell };
 }
