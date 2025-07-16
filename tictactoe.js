@@ -45,15 +45,12 @@ function Gameboard() {
     return { gameboard, players, getBoard, chooseCell };
 }
 
-function playerTurn () {
+function playGame (board) {
     // winning logic
     // start and return
     // switch turn
 
-    const board = Gameboard();
-
     let turn = 0;
-    let gameover = 0;
     const switchTurn = () => {
             if( turn === 0 ) {
                 number = prompt("Which cell do you wanna choose?");
@@ -68,26 +65,52 @@ function playerTurn () {
             }
     }
 
-//     const playerWin = () {
-//         let rerow = 0;
-//         let recol = 0;
+    
+    const playerWin = () => {
+        const B = board.getBoard();
+        let gameover = false;
 
-//         if ( index == 1 || index == 2 || index == 3 ) {
-//             rerow = 0;
-//             recol = index - 1;
-//         } else if ( index == 4 || index == 5 || index == 6) {
-//             rerow = 1;
-//             recol = index - 4;
-//         } else if ( index == 7 || index == 8 || index == 9) {
-//             rerow = 2;
-//             recol = index - 7;
-//         } else {
-//             alert("You choose the wrong indext. Choose between 1 ~ 9");
-//             playerWin();
-//         }
+        const winConditions = [
+            [[0, 0],[0, 1],[0, 2]],[[1, 0],[1, 1],[1, 2]],[[2, 0],[2, 1],[2, 2]],
+            [[0, 0],[1, 0],[2, 0]],[[0, 1],[1, 1],[2, 1]],[[0, 2],[1, 2],[2, 2]],
+            [[0, 0],[1, 1],[2, 2]],[[0, 2],[1, 1],[2, 0]]
+        ];
 
-//         if ()
+        for ( const condition of winConditions ) {
+            const [a, b, c] = condition;
+            const cell1 = B[a[0]][a[1]];
+            const cell2 = B[b[0]][b[1]];
+            const cell3 = B[c[0]][c[1]];
 
-//     }
-//    return { board, switchTurn };
+            if ( cell1 !== null && cell2 !== null && cell3 !== null ) {
+                if (cell1 === cell2 && cell2 === cell3)
+                    console.log(`${cell1 === "x" ? "Player1" : "Player2"} wins!`);
+                    gameover = true;
+                    break;
+            }
+        }
+
+        if ( gameover === true ) {
+            console.log("Game is Over!");
+        };
+    }
+
+   return { switchTurn, playerWin };
 }
+
+const board1 = Gameboard();
+const game = playGame(board1);
+board1.chooseCell(1, board1.players.player1);
+console.log(board1.getBoard());
+game.playerWin();
+// board1.chooseCell(5, board1.players.player1);
+// game.playerWin();
+// board1.chooseCell(9, board1.players.player1);
+// game.playerWin();
+// board1.chooseCell(4, board1.players.player2);
+// game.playerWin();
+// board1.chooseCell(6, board1.players.player2);
+// game.playerWin();
+// board1.chooseCell(7, board1.players.player2);
+// game.playerWin();
+
