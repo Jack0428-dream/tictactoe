@@ -1,0 +1,57 @@
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border: 2px solid black;
+    width: 500px;
+    height: 500px;
+}
+
+#gameboard > div {
+    border: 2px solid black;
+}
+
+.div0 {
+    background-color: red;
+    background: 2px solid black;
+}
+
+.div1 {
+    background-color: orange;
+    background: 2px solid black;
+}
+
+.div2 {
+    background-color: yellow;
+    background: 2px solid black;
+}
+
+.div3 {
+    background-color: lightgreen;
+    background: 2px solid black;
+}
+
+.div4 {
+    background-color: green;
+    background: 2px solid black;
+}
+
+.div5 {
+    background-color: lightblue;
+    background: 2px solid black;
+}
+
+.div6 {
+    background-color: blue;
+    background: 2px solid black;
+}
+
+.div7 {
+    background-color: navy;
+    background: 2px solid black;
+}
+
+.div8 {
+    background-color: blueviolet;
+    background: 2px solid black;
+}

@@ -10,3 +10,5 @@ Getting a working game in the console.
 3. When X or O takes all three spaces of a row, column, or diagonal 
 of the grid, that player wins the game and gmae is over. 
 
+4. Connect the functions to DOM so that user can play tictactoe on screen
+
