@@ -55,17 +55,14 @@ function playGame (board) {
             if( turn === 0 ) {
                 number = prompt("Which cell do you wanna choose?");
                 board.chooseCell(number, board.players.player1);
-                console.log(board.getBoard());
                 turn = 1;
             } else if ( turn === 1 )  {
                 number = prompt("Which cell do you wanna choose?");
                 board.chooseCell(number,board.players.player2);
-                console.log(board.getBoard());
                 turn = 0;
             }
     }
 
-    
     const playerWin = () => {
         const B = board.getBoard();
         let gameover = false;
@@ -83,10 +80,11 @@ function playGame (board) {
             const cell3 = B[c[0]][c[1]];
 
             if ( cell1 !== null && cell2 !== null && cell3 !== null ) {
-                if (cell1 === cell2 && cell2 === cell3)
+                if (cell1 === cell2 && cell2 === cell3) {
                     console.log(`${cell1 === "x" ? "Player1" : "Player2"} wins!`);
                     gameover = true;
                     break;
+                }
             }
         }
 
@@ -100,17 +98,11 @@ function playGame (board) {
 
 const board1 = Gameboard();
 const game = playGame(board1);
-board1.chooseCell(1, board1.players.player1);
+game.switchTurn();
 console.log(board1.getBoard());
 game.playerWin();
-// board1.chooseCell(5, board1.players.player1);
-// game.playerWin();
-// board1.chooseCell(9, board1.players.player1);
-// game.playerWin();
-// board1.chooseCell(4, board1.players.player2);
-// game.playerWin();
-// board1.chooseCell(6, board1.players.player2);
-// game.playerWin();
-// board1.chooseCell(7, board1.players.player2);
-// game.playerWin();
-
+game.switchTurn();
+game.switchTurn();
+game.switchTurn();
+game.switchTurn();
+console.log(board1.getBoard());
