@@ -1,3 +1,10 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #gameboard {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -9,6 +16,10 @@
 
 #gameboard > div {
     border: 2px solid black;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .div0 {
