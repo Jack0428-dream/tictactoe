@@ -54,11 +54,9 @@ function playGame (board) {
                 board.chooseCell(number, board.players.player1);
                 turn = 1;
             } else if ( turn === 1 )  {
-                board.chooseCell(number,board.players.player2);
+                board.chooseCell(number, board.players.player2);
                 turn = 0;
             }
-
-            return turn;
     }
 
     const playerWin = () => {
@@ -91,20 +89,18 @@ function playGame (board) {
         };
     }
 
-   return { switchTurn, playerWin };
+   return { turn, switchTurn, playerWin };
 }
 
-// const board1 = Gameboard();
-// const game = playGame(board1);
-// game.switchTurn();
-// console.log(board1.getBoard());
-// game.playerWin();
-// game.switchTurn();
-// game.switchTurn();
-// game.switchTurn();
-// game.switchTurn();
-// console.log(board1.getBoard());
- 
+// const a = Gameboard();
+// const b = playGame(a);
+// b.switchTurn(1);
+// b.switchTurn(2);
+// b.switchTurn(5);
+// b.switchTurn(7);
+// b.switchTurn(9);
+// b.playerWin();
+
 function screenController() {
     const gBoard = document.querySelector("#gameboard");
 
@@ -125,84 +121,103 @@ function screenController() {
     const div8 = document.querySelector(".div8");
 
     const clickEvent = (rule) => {
+        let play = rule.turn
         div0.addEventListener("click", () => {
-            rule.switchTurn(1);
-            if (turn == 0) {
+            rule.switchTurn(1);            
+            if (play == 0) {
                 div0.textContent = "X";
-            } else if (turn == 1) {
+                play = 1;
+            } else if (play == 1) {
                 div0.textContent = "O";
+                play = 0;
             }
         });
 
         div1.addEventListener("click", () => {
             rule.switchTurn(2);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play == 0) {
+                div1.textContent = "X";
+                play = 1;
+            } else if (play == 1) {
+                div1.textContent = "O";
+                play = 0;
             }
         });
 
         div2.addEventListener("click", () => {
             rule.switchTurn(3);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play == 0) {
+                div2.textContent = "X";
+                play = 1;
+            } else if (play == 1) {
+                div2.textContent = "O";
+                play = 0;
             }
         });
 
         div3.addEventListener("click", () => {
             rule.switchTurn(4);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play == 0) {
+                div3.textContent = "X";
+                play = 1;
+            } else if (play == 1) {
+                div3.textContent = "O";
+                play = 0;
             }
         });
 
         div4.addEventListener("click", () => {
             rule.switchTurn(5);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play === 0) {
+                div4.textContent = "X";
+                play = 1;
+            } else if (play === 1) {
+                div4.textContent = "O";
+                play = 0;
             }
         });
 
         div5.addEventListener("click", () => {
             rule.switchTurn(6);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play == 0) {
+                div5.textContent = "X";
+                play = 1;
+            } else if (play == 1) {
+                div5.textContent = "O";
+                play = 0;
             }
         });
 
         div6.addEventListener("click", () => {
             rule.switchTurn(7);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play == 0) {
+                div6.textContent = "X";
+                play = 1;
+            } else if (play == 1) {
+                div6.textContent = "O";
+                play = 0;
             }
         });
 
         div7.addEventListener("click", () => {
             rule.switchTurn(8);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play == 0) {
+                div7.textContent = "X";
+                play = 1;
+            } else if (play == 1) {
+                div7.textContent = "O";
+                play = 0;
             }
         });
 
         div8.addEventListener("click", () => {
             rule.switchTurn(9);
-            if (turn == 0) {
-                div0.textContent = "X";
-            } else if (turn == 1) {
-                div0.textContent = "O";
+            if (play == 0) {
+                div8.textContent = "X";
+                play = 1;
+            } else if (play == 1) {
+                div8.textContent = "O";
+                play = 0;
             }
         });
     };
@@ -215,5 +230,5 @@ b = playGame(a);
 c = screenController();
 c.clickEvent(b);
 
-console.log(b.switchTurn());
-console.log(b.switchTurn());
+// console.log(b.switchTurn());
+// console.log(b.switchTurn());
