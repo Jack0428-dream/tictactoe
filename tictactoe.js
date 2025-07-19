@@ -88,7 +88,7 @@ function playGame (board) {
             const cell2 = B[b[0]][b[1]];
             const cell3 = B[c[0]][c[1]];
 
-            if (cell1 === cell2 && cell2 === cell3) {
+            if (cell1 === cell2 && cell2 === cell3 && cell1 !== null) {
                 winner = `${cell1 === "X" ? "Player1" : "Player2"} wins!`;
                 gameover = true;
                 return {winner, gameover};
@@ -112,9 +112,7 @@ function playGame (board) {
    return { switchTurn, playerWin };
 }
 
-function screenController() {
-    const gameboard = Gameboard();
-    const boardref = playGame(gameboard);
+function screenController(gameboard, boardref) {
     const gBoard = document.querySelector("#gameboard");
 
     for (let i = 1; i <= 9; i++) {
@@ -123,23 +121,37 @@ function screenController() {
         gBoard.append(div);
         div.dataset.index = i;
     };
-
+    
+    const cells = document.querySelectorAll(".cell");
     const cellBox = () => {
-        const cells = document.querySelectorAll(".cell");
         cells.forEach((cell) => {
             cell.addEventListener("click", () => {
                 let play = boardref.switchTurn(cell.dataset.index);
                 
                 if (cell.textContent === "" && play === true) {
                     cell.textContent = "X";
-                    console.log(boardref.turn);
                 } else if (cell.textContent === "" && play === false) {
                     cell.textContent = "O";
                 } else if (cell.textContent !== "" ) {
                     alert("It's taken. Choose another cell!")
                 }
+
+                winAnnounce();
             })
         })
+    }
+
+    const winAnnounce = () => {
+        const announce = boardref.playerWin();
+        console.log(announce.gameover);
+
+        if (announce.gameover === true) {
+            const body = document.querySelector("body");
+            const h2 = document.createElement("h2");
+            body.appendChild(h2);
+
+            h2.textContent = announce.winner;
+        }
     }
 
     return { cellBox }
@@ -147,5 +159,5 @@ function screenController() {
 
 const a = Gameboard();
 const b = playGame(a);
-const c = screenController();
+const c = screenController(a, b);
 c.cellBox();
