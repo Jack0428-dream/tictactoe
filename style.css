@@ -1,8 +1,26 @@
+@font-face {
+    font-family: "aller";
+    src:
+      url(fonts/aller_rg-webfont.woff) format("woff"),
+      url(fonts/aller_rg-webfont.woff2) format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "exo";
+    src: url(fonts/exo-regular-webfont.woff) format("woff"),
+         url(fonts/exo-regular-webfont.woff2) format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "exo", serif;
 }
 
 #gameboard {
@@ -20,49 +38,4 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.div0 {
-    background-color: red;
-    background: 2px solid black;
-}
-
-.div1 {
-    background-color: orange;
-    background: 2px solid black;
-}
-
-.div2 {
-    background-color: yellow;
-    background: 2px solid black;
-}
-
-.div3 {
-    background-color: lightgreen;
-    background: 2px solid black;
-}
-
-.div4 {
-    background-color: green;
-    background: 2px solid black;
-}
-
-.div5 {
-    background-color: lightblue;
-    background: 2px solid black;
-}
-
-.div6 {
-    background-color: blue;
-    background: 2px solid black;
-}
-
-.div7 {
-    background-color: navy;
-    background: 2px solid black;
-}
-
-.div8 {
-    background-color: blueviolet;
-    background: 2px solid black;
 }
