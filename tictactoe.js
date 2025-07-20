@@ -89,7 +89,7 @@ function playGame (board) {
             const cell3 = B[c[0]][c[1]];
 
             if (cell1 === cell2 && cell2 === cell3 && cell1 !== null) {
-                winner = `${cell1 === "X" ? "Player1" : "Player2"} wins!`;
+                winner = `${cell1 === "X" ? "Player1" : "Player2"} wins`;
                 gameover = true;
                 return {winner, gameover};
             } 
@@ -112,28 +112,40 @@ function playGame (board) {
    return { switchTurn, playerWin };
 }
 
-function screenController(gameboard, boardref) {
+function screenController() {
+    let gameboard;
+    let boardRef;
+
     const gBoard = document.querySelector("#gameboard");
+    const h2 = document.querySelector("h2");
+    const body = document.querySelector("body");
+    const resetBtn = document.querySelector(".reset");
+
+    const setBoard = (newBoard, newLogic) => {
+        gameboard = newBoard;
+        boardRef = newLogic;
+    };
 
     for (let i = 1; i <= 9; i++) {
         const div = document.createElement("div");
-        div.classList = "cell"
+        div.classList = "cell";
         gBoard.append(div);
         div.dataset.index = i;
-    };
-    
+    }
+
     const cells = document.querySelectorAll(".cell");
+
     const cellBox = () => {
         cells.forEach((cell) => {
             cell.addEventListener("click", () => {
-                let play = boardref.switchTurn(cell.dataset.index);
-                
+                let play = boardRef.switchTurn(cell.dataset.index);
+
                 if (cell.textContent === "" && play === true) {
                     cell.textContent = "X";
                 } else if (cell.textContent === "" && play === false) {
                     cell.textContent = "O";
-                } else if (cell.textContent !== "" ) {
-                    alert("It's taken. Choose another cell!")
+                } else {
+                    alert("It's taken. Choose another cell!");
                 }
 
                 winAnnounce();
@@ -142,27 +154,34 @@ function screenController(gameboard, boardref) {
     }
 
     const winAnnounce = () => {
-        const announce = boardref.playerWin();
-        console.log(announce.gameover);
-
-        if (announce.gameover === true) {
-            const body = document.querySelector("body");
-            const h2 = document.createElement("h2");
-            body.appendChild(h2);
-
-            h2.textContent = announce.winner;
+        const result = boardRef.playerWin();
+        if (result.gameover === true) {
+            h2.textContent = `${result.winner}`;
         }
-    }
+    };
 
-    // const button = document.querySelector("button");
-    // button.addEventListener("click", () => {
-    //     gameboard.getBoard()
-    // })
+    const resetGame = () => {
+        cells.forEach((cell) => {
+            cell.textContent = "";
+        });
 
-    return { cellBox }
+        const newGameboard = Gameboard();
+        const newLogic = playGame(newGameboard);
+
+        setBoard(newGameboard, newLogic);
+
+        h2.textContent = "Winner is ...";
+    };
+
+    resetBtn.addEventListener("click", resetGame);
+
+    return { cellBox, setBoard };
 }
 
-const a = Gameboard();
-const b = playGame(a);
-const c = screenController(a, b);
-c.cellBox();
+const controller = screenController();
+
+const game = Gameboard();
+const logic = playGame(game);
+
+controller.setBoard(game, logic);
+controller.cellBox();

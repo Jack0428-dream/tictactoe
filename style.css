@@ -40,3 +40,17 @@ body {
     align-items: center;
 }
 
+.footer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 500px;
+}
+
+.reset {
+    width: 150px;
+    height: 50px; 
+    align-self: center;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: "exo", serif;
+}
