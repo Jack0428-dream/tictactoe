@@ -1,7 +1,12 @@
 function Gameboard() {
     const grid = 3;
     const gameboard =[];
-    const players = { player1: "X", player2: "O"};
+    const players = {};
+
+    const savingName = (name1, name2) => {
+       players["player1"] = name1;
+       players["player2"] = name2;
+    };
 
     // making 3x3 grid
     for(let i = 0; i < grid; i++) {
@@ -40,7 +45,7 @@ function Gameboard() {
         }
     }
     
-    return { gameboard, players, getBoard, chooseCell };
+    return { gameboard, players, getBoard, chooseCell, savingName };
 }
 
 function playGame (board) {
@@ -51,7 +56,7 @@ function playGame (board) {
     let turn = 0;
     const switchTurn = (number) => {
         if( turn === 0 ) {
-            temp = board.chooseCell(number, board.players.player1);
+            temp = board.chooseCell(number, "X");
             if (temp === false ) {
                 turn = 0;
             } else {
@@ -60,7 +65,7 @@ function playGame (board) {
             }
             return true;            
         } else if ( turn === 1 )  {
-            temp = board.chooseCell(number, board.players.player2);
+            temp = board.chooseCell(number, "O");
             if (temp === false) {
                 turn = 1;
             } else {
@@ -89,7 +94,7 @@ function playGame (board) {
             const cell3 = B[c[0]][c[1]];
 
             if (cell1 === cell2 && cell2 === cell3 && cell1 !== null) {
-                winner = `${cell1 === "X" ? "Player1" : "Player2"} wins`;
+                winner = `${cell1 === "X" ? `${board.players.player1}` : `${board.players.player2}`} wins`;
                 gameover = true;
                 return {winner, gameover};
             } 
@@ -120,6 +125,9 @@ function screenController() {
     const h2 = document.querySelector("h2");
     const body = document.querySelector("body");
     const resetBtn = document.querySelector(".reset");
+    const nameBtn = document.querySelector(".name");
+    const p1input = document.querySelector("#p1name");
+    const p2input = document.querySelector("#p2name");
 
     const setBoard = (newBoard, newLogic) => {
         gameboard = newBoard;
@@ -171,11 +179,21 @@ function screenController() {
         setBoard(newGameboard, newLogic);
 
         h2.textContent = "Winner is ...";
+        namep1.textContent = "";
+        namep2.textContent = "";
     };
 
     resetBtn.addEventListener("click", resetGame);
 
-    return { cellBox, setBoard };
+    const saveName = () => {
+        nameBtn.addEventListener("click", () => {
+            gameboard.savingName(p1input.value, p2input.value);
+            p1input.value = "";
+            p2input.value = "";
+        })
+    }
+
+    return { cellBox, setBoard, saveName };
 }
 
 const controller = screenController();
@@ -185,3 +203,4 @@ const logic = playGame(game);
 
 controller.setBoard(game, logic);
 controller.cellBox();
+controller.saveName();
